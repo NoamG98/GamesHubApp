@@ -1,0 +1,31 @@
+﻿<Window x:Class="GamesHubApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GameHubApp" Height="450" Width="800" Background="LightBlue">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
+        </Grid.Background>
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Welcome to GameHubApp" 
+                       FontSize="36" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,20"/>
+            <TextBlock Text="Hello! Enjoy your gaming experience."
+                       FontSize="24" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,40"/>
+            <Button Content="Games" 
+                    Width="200" 
+                    Height="50" 
+                    FontSize="18" 
+                    Margin="0,0,0,10"
+                    Click="GamesButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

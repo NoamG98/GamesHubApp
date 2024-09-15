@@ -1,0 +1,11 @@
+﻿<Window x:Class="GamesHubApp.SpaceBattleShooterGame"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SpaceBattleShooterGame" Height="800" Width="600" 
+        KeyDown="OnKeyDown" KeyUp="OnKeyUp">
+    <Canvas Name="MyCanvas" Focusable="True" Background="Black">
+        <Label Name="scoreText" Content="Score: 0" FontSize="18" FontWeight="Bold" Foreground="White" Canvas.Top="10" Canvas.Left="10"/>
+        <Label Name="damageText" Content="Damaged: 0" FontSize="18" FontWeight="Bold" Foreground="White" Canvas.Top="10" Canvas.Right="10"/>
+        <Button x:Name="PlayAgainButton" Content="Play Again" Width="200" Height="50" Visibility="Hidden" Click="PlayAgain_Click" Canvas.Top="400" Canvas.Left="200"/>
+    </Canvas>
+</Window>
