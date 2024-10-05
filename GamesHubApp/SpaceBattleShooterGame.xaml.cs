@@ -62,6 +62,22 @@ namespace GamesHubApp
             };
 
             player.Fill = playerImage;
+
+            // Attach the event handler for window closing
+            this.Closing += SpaceBattleShooterGame_Closing;
+        }
+
+        // Event handler for window closing
+        private void SpaceBattleShooterGame_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Stop the game timer to ensure the game stops running
+            gametime.Stop();
+            // Optionally, if you want to add any confirmation before closing:
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to close the game?", "Close Game", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true; // Cancel the closing if the user clicks No
+            }
         }
 
         private void GameLoop(object? sender, EventArgs e)

@@ -24,6 +24,23 @@ namespace FlappyBirdGame
             gameTimer.Tick += gameEngine;
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);
             startGame();
+
+            // Attach the event handler for window closing
+            this.Closing += FlappyBirdGameWindow_Closing;
+        }
+
+        // Event handler for window closing
+        private void FlappyBirdGameWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // Stop the game timer to prevent it from running in the background
+            gameTimer.Stop();
+
+            // Optional: Confirm the user wants to close the game
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to close the game?", "Close Game", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true; // Cancel the close action if the user selects No
+            }
         }
 
         private void Canvas_KeyisDown(object? sender, KeyEventArgs e)
