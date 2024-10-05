@@ -94,6 +94,15 @@ If you'd like to contribute to the GamesHub project:
 6. Open a Pull Request.
 
 
-## License
+## About me
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Hi, I'm Noam, a passionate Full Stack .NET Developer from Israel, 
+
+currently studying at HackerU College and expected to graduate in early 2025.
+
+I have a strong background in both frontend and backend development,
+
+with experience in building projects using technologies like HTML, CSS, React, JavaScript, and C#.
+
+My focus is on creating responsive and aesthetically pleasing applications, emphasizing user experience and functionality.
+
