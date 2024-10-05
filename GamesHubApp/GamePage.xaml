@@ -4,25 +4,92 @@
       ShowsNavigationUI="False"
       Title="Games">
     <Grid>
+        <!-- רקע -->
         <Grid.Background>
             <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
         </Grid.Background>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Games" FontSize="36" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
-            <Button Content="Space Battle Shooter Game" Width="300" Height="50" Margin="0,0,0,10" Click="SpaceBattleShooterGame_Click"
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="Flappy Bird Game" Width="300" Height="50" Margin="0,0,0,10" Click="FlappyBirdGame_Click"
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="Snake Game" Width="300" Height="50" Margin="0,0,0,10" Click="SnakeGame_Click" 
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="Pacman Game" Width="300" Height="50" Margin="0,0,0,10" Click="PacmanGameButton_Click" 
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="Tic Tac Toe Game" Width="300" Height="50" Margin="0,0,0,10" Click="TicTacToeGameButton_Click"
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="To-Do List" Width="300" Height="50" Margin="0,0,0,10" Click="ToDoListButton_Click"
-                    Background="#99000000" Foreground="White" BorderBrush="White"/>
-            <Button Content="Back to Main Menu" Width="300" Height="50" Margin="0,50,0,0" Click="BackButton_Click"
-                    Background="#FF007ACC" Foreground="White" BorderBrush="White"/>
-        </StackPanel>
+
+        <!-- טקסט כותרת -->
+        <TextBlock Text="Games" FontSize="36" Foreground="White" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top"/>
+
+        <!-- משחקים בתצורת GRID עם תמונות -->
+        <Grid Margin="10,100,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100"/>
+                <!-- מרווח בין הפרויקטים לכפתור החזרה -->
+                <RowDefinition Height="Auto"/>
+                <!-- שורה לכפתור החזרה -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- משחק 1: Space Battle Shooter -->
+            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\spacebattleImage.png" Width="150" Height="150"/>
+                <Button Content="Space Battle Shooter Game" Width="150" Height="40" Click="SpaceBattleShooterGame_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- משחק 2: Flappy Bird -->
+            <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\FlappyBirdImage.jpg" Width="150" Height="150"/>
+                <Button Content="Flappy Bird Game" Width="150" Height="40" Click="FlappyBirdGame_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- משחק 3: Snake -->
+            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\SnakeGameImage.jpg" Width="150" Height="150"/>
+                <Button Content="Snake Game" Width="150" Height="40" Click="SnakeGame_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- משחק 4: Pacman -->
+            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\PacmanImage.jpg" Width="150" Height="150"/>
+                <Button Content="Pacman Game" Width="150" Height="40" Click="PacmanGameButton_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- משחק 5: Tic Tac Toe -->
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\TicTacToeImage.jpg" Width="150" Height="150"/>
+                <Button Content="Tic Tac Toe Game" Width="150" Height="40" Click="TicTacToeGameButton_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- משחק 6: To-Do List -->
+            <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\ToDoListImage.jpg" Width="150" Height="150"/>
+                <Button Content="To-Do List" Width="150" Height="40" Click="ToDoListButton_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- פרויקט: Countries Project -->
+            <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
+                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\CountriesProjects.jpg" Width="150" Height="150"/>
+                <Button Content="Countries Project" Width="150" Height="40" Click="CountriesProjectButton_Click" 
+                        Background="#99000000" Foreground="White" BorderBrush="White"/>
+            </StackPanel>
+
+            <!-- כפתור חזרה -->
+            <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0,40,0,0">
+                <!-- מרווח בין הפרויקטים לכפתור החזרה -->
+                <Button Width="150" Height="40" Click="BackButton_Click" 
+                        Background="#FF007ACC" Foreground="White" BorderBrush="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\BackButton.png" Width="20" Height="20"/>
+                        <TextBlock Text="Back to Main Menu" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <!-- מרווח בין הפרויקטים לכפתור החזרה -->
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

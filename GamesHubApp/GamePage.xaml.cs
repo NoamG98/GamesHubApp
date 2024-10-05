@@ -46,6 +46,12 @@ namespace GamesHubApp
             toDoListLandingPage.Show();
         }
 
+        private void CountriesProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            var countriesProjectLandingPage = new CountriesProjectLandingPage();
+            countriesProjectLandingPage.Show();
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();

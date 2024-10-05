@@ -1,0 +1,90 @@
+﻿<Window x:Class="GamesHubApp.CountriesProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Countries Project" Height="600" Width="900"
+        Background="#2C3E50">
+    <Grid>
+        <!-- Header Section -->
+        <Border Background="#1ABC9C" Height="80" VerticalAlignment="Top">
+            <TextBlock Text="Countries Explorer" Foreground="White" FontSize="36" 
+                       FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Border>
+
+        <!-- Main Content Section -->
+        <Grid Margin="10,100,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Search and Filter Section -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,20">
+                <!-- Search Box with Placeholder -->
+                <Grid>
+                    <TextBox x:Name="SearchTextBox" Width="250" Height="35" 
+                             TextChanged="SearchTextBox_TextChanged"
+                             VerticalContentAlignment="Center" FontSize="16"
+                             Background="White" Foreground="#2C3E50" Padding="5"
+                             BorderBrush="#1ABC9C" BorderThickness="2"/>
+                    <TextBlock x:Name="SearchPlaceholderTextBlock" Text="Search by country name..."
+                               Foreground="Gray" FontSize="14" VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" Margin="10,0,0,0" 
+                               IsHitTestVisible="False" Visibility="Visible"/>
+                </Grid>
+
+                <!-- Spacer -->
+                <TextBlock Width="20" />
+
+                <!-- Filter by Region -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <ComboBox x:Name="RegionFilterComboBox" Width="200" Height="35" 
+                              SelectionChanged="RegionFilterComboBox_SelectionChanged"
+                              FontSize="16" Background="White" Foreground="#2C3E50" 
+                              VerticalContentAlignment="Center" BorderBrush="#1ABC9C" BorderThickness="2">
+                        <ComboBoxItem Content="All Regions" IsSelected="True"/>
+                        <ComboBoxItem Content="Africa"/>
+                        <ComboBoxItem Content="Americas"/>
+                        <ComboBoxItem Content="Asia"/>
+                        <ComboBoxItem Content="Europe"/>
+                        <ComboBoxItem Content="Oceania"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Data Grid Section -->
+            <DataGrid x:Name="CountriesDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                      Background="White" Foreground="Black" 
+                      AlternatingRowBackground="#ECF0F1" GridLinesVisibility="None"
+                      BorderBrush="#1ABC9C" BorderThickness="2" 
+                      VerticalAlignment="Top" Margin="0,20,0,0"
+                      RowHeight="60" HorizontalGridLinesBrush="#1ABC9C"
+                      VerticalGridLinesBrush="#1ABC9C" FontSize="14" 
+                      HeadersVisibility="Column" 
+                      Padding="5" HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <!-- Country Name Column -->
+                    <DataGridTextColumn Header="Country Name" Binding="{Binding Name.Common}" 
+                                        Width="*" FontSize="16" FontWeight="Bold" />
+
+                    <!-- Region Column -->
+                    <DataGridTextColumn Header="Region" Binding="{Binding Region}" Width="*" FontSize="16" />
+
+                    <!-- Population Column -->
+                    <DataGridTextColumn Header="Population" Binding="{Binding Population}" Width="*" FontSize="16" />
+
+                    <!-- Capital Column -->
+                    <DataGridTextColumn Header="Capital" Binding="{Binding CapitalDisplay}" Width="*" FontSize="16" />
+
+                    <!-- Flag Column -->
+                    <DataGridTemplateColumn Header="Flag" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding FlagImageUrl}" Width="50" Height="30" Stretch="Uniform" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
