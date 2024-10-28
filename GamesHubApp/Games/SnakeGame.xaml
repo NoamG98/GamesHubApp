@@ -11,10 +11,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
         <Canvas Name="GameCanvas" Width="1024" Height="768">
             <Canvas.Background>
-                <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\Snakebackground.jpg" />
+                <ImageBrush ImageSource="pack://application:,,,/image/SnakeImage/Snakebackground.jpg" />
             </Canvas.Background>
         </Canvas>
     </Grid>

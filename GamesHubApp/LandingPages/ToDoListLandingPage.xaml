@@ -4,19 +4,12 @@
         Title="To-Do List App" Height="400" Width="600">
     <Grid Margin="10">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://application:,,,/image/background.jpg" Stretch="Fill"/>
         </Grid.Background>
-
-
         <TextBlock Text="To-Do List" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="White"/>
-
         <TextBlock Text="Programming Language: C# - Organize your tasks easily" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0" Foreground="White"/>
-
-
-        <Image Source="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\LandingPageImage\ToDoListImage.jpg" Width="213" Height="135" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,136,0,0"/>
-
+        <Image Source="pack://application:,,,/image/LandingPageImage/ToDoListImage.jpg" Width="213" Height="135" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,136,0,0"/>
         <Button Content="Open To-Do List" Width="150" Height="40" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,50,0" Click="OpenToDoList" Background="#FF007ACC" Foreground="White" BorderBrush="White"/>
-
         <Button Content="◄" Width="40" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Click="BackToGamesPage" Background="#99000000" Foreground="White" BorderBrush="White"/>
     </Grid>
 </Window>

@@ -12,12 +12,13 @@ namespace GamesHubApp
         private void PlaySnakeGame(object sender, RoutedEventArgs e)
         {
             var snakeGameWindow = new SnakeGameApp.SnakeGame();
-            snakeGameWindow.ShowDialog();
+            snakeGameWindow.Show();
+            this.Close();
         }
 
         private void BackToGamesPage(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

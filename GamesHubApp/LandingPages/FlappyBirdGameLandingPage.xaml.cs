@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace GamesHubApp
 {
@@ -17,7 +18,7 @@ namespace GamesHubApp
 
         private void BackToGamesPage(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

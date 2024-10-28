@@ -9,6 +9,114 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="image\background.jpg" />
+    <None Remove="image\Countries\CountriesProjects.jpg" />
+    <None Remove="image\FlappyBirdImage\clouds.png" />
+    <None Remove="image\FlappyBirdImage\clouds2.png" />
+    <None Remove="image\FlappyBirdImage\flappyBird.png" />
+    <None Remove="image\FlappyBirdImage\pipeBottom.png" />
+    <None Remove="image\FlappyBirdImage\pipeTop.png" />
+    <None Remove="image\imageBattleShooter\1.png" />
+    <None Remove="image\imageBattleShooter\2.png" />
+    <None Remove="image\imageBattleShooter\3.png" />
+    <None Remove="image\imageBattleShooter\4.png" />
+    <None Remove="image\imageBattleShooter\5.png" />
+    <None Remove="image\imageBattleShooter\player.png" />
+    <None Remove="image\imageBattleShooter\wallpaper.png" />
+    <None Remove="image\LandingPageImage\BackButton.png" />
+    <None Remove="image\LandingPageImage\CountriesProjects.jpg" />
+    <None Remove="image\LandingPageImage\FlappyBirdImage.jpg" />
+    <None Remove="image\LandingPageImage\PacmanImage.jpg" />
+    <None Remove="image\LandingPageImage\SnakeGameImage.jpg" />
+    <None Remove="image\LandingPageImage\spacebattleImage.png" />
+    <None Remove="image\LandingPageImage\TicTacToeImage.jpg" />
+    <None Remove="image\LandingPageImage\ToDoListImage.jpg" />
+    <None Remove="image\Pacmanimages\coin.gif" />
+    <None Remove="image\Pacmanimages\down.gif" />
+    <None Remove="image\Pacmanimages\left.gif" />
+    <None Remove="image\Pacmanimages\pink_guy.gif" />
+    <None Remove="image\Pacmanimages\red_guy.gif" />
+    <None Remove="image\Pacmanimages\right.gif" />
+    <None Remove="image\Pacmanimages\Up.gif" />
+    <None Remove="image\Pacmanimages\yellow_guy.gif" />
+    <None Remove="image\SnakeImage\apple.png" />
+    <None Remove="image\SnakeImage\body_bottomleft.png" />
+    <None Remove="image\SnakeImage\body_bottomright.png" />
+    <None Remove="image\SnakeImage\body_horizontal.png" />
+    <None Remove="image\SnakeImage\body_topleft.png" />
+    <None Remove="image\SnakeImage\body_topright.png" />
+    <None Remove="image\SnakeImage\body_vertical.png" />
+    <None Remove="image\SnakeImage\head_down.png" />
+    <None Remove="image\SnakeImage\head_left.png" />
+    <None Remove="image\SnakeImage\head_right.png" />
+    <None Remove="image\SnakeImage\head_up.png" />
+    <None Remove="image\SnakeImage\Snakebackground.jpg" />
+    <None Remove="image\SnakeImage\tail_down.png" />
+    <None Remove="image\SnakeImage\tail_left.png" />
+    <None Remove="image\SnakeImage\tail_right.png" />
+    <None Remove="image\SnakeImage\tail_up.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\SnakeImage\head_up.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\FlappyBirdImage\pipeTop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\Countries\CountriesProjects.jpg" />
+    <Resource Include="image\FlappyBirdImage\clouds.png" />
+    <Resource Include="image\FlappyBirdImage\clouds2.png" />
+    <Resource Include="image\FlappyBirdImage\flappyBird.png" />
+    <Resource Include="image\FlappyBirdImage\pipeBottom.png" />
+    <Resource Include="image\imageBattleShooter\1.png" />
+    <Resource Include="image\imageBattleShooter\2.png" />
+    <Resource Include="image\imageBattleShooter\3.png" />
+    <Resource Include="image\imageBattleShooter\4.png" />
+    <Resource Include="image\imageBattleShooter\5.png" />
+    <Resource Include="image\imageBattleShooter\player.png" />
+    <Resource Include="image\imageBattleShooter\wallpaper.png" />
+    <Resource Include="image\LandingPageImage\SnakeGameImage.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="image\background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\LandingPageImage\BackButton.png" />
+    <Resource Include="image\LandingPageImage\CountriesProjects.jpg" />
+    <Resource Include="image\LandingPageImage\FlappyBirdImage.jpg" />
+    <Resource Include="image\LandingPageImage\PacmanImage.jpg" />
+    <Resource Include="image\LandingPageImage\spacebattleImage.png" />
+    <Resource Include="image\LandingPageImage\TicTacToeImage.jpg" />
+    <Resource Include="image\LandingPageImage\ToDoListImage.jpg" />
+    <Resource Include="image\Pacmanimages\coin.gif" />
+    <Resource Include="image\Pacmanimages\down.gif" />
+    <Resource Include="image\Pacmanimages\left.gif" />
+    <Resource Include="image\Pacmanimages\pink_guy.gif" />
+    <Resource Include="image\Pacmanimages\red_guy.gif" />
+    <Resource Include="image\Pacmanimages\right.gif" />
+    <Resource Include="image\Pacmanimages\Up.gif" />
+    <Resource Include="image\Pacmanimages\yellow_guy.gif" />
+    <Resource Include="image\SnakeImage\apple.png" />
+    <Resource Include="image\SnakeImage\body_bottomleft.png" />
+    <Resource Include="image\SnakeImage\body_bottomright.png" />
+    <Resource Include="image\SnakeImage\body_topleft.png" />
+    <Resource Include="image\SnakeImage\body_topright.png" />
+    <Resource Include="image\SnakeImage\body_vertical.png" />
+    <Resource Include="image\SnakeImage\head_down.png" />
+    <Resource Include="image\SnakeImage\head_left.png" />
+    <Resource Include="image\SnakeImage\head_right.png" />
+    <Resource Include="image\SnakeImage\Snakebackground.jpg" />
+    <Resource Include="image\SnakeImage\tail_down.png" />
+    <Resource Include="image\SnakeImage\tail_left.png" />
+    <Resource Include="image\SnakeImage\tail_right.png" />
+    <Resource Include="image\SnakeImage\tail_up.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

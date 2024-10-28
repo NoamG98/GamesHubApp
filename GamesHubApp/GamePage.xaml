@@ -5,7 +5,7 @@
     <Grid>
         <!-- Background -->
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
+            <ImageBrush ImageSource="image/background.jpg" Stretch="Fill"/>
         </Grid.Background>
 
         <!-- Date and Time on the top-right corner -->
@@ -41,49 +41,49 @@
 
             <!-- Space Battle Shooter -->
             <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\spacebattleImage.png" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/spacebattleImage.png" Width="150" Height="150"/>
                 <Button Content="Space Battle Shooter Game" Width="150" Height="40" Click="SpaceBattleShooterGame_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- Flappy Bird -->
             <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\FlappyBirdImage.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/FlappyBirdImage.jpg" Width="150" Height="150"/>
                 <Button Content="Flappy Bird Game" Width="150" Height="40" Click="FlappyBirdGame_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- Snake -->
             <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\SnakeGameImage.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/SnakeGameImage.jpg" Width="150" Height="150"/>
                 <Button Content="Snake Game" Width="150" Height="40" Click="SnakeGame_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- Pacman -->
             <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\PacmanImage.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/PacmanImage.jpg" Width="150" Height="150"/>
                 <Button Content="Pacman Game" Width="150" Height="40" Click="PacmanGameButton_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- Tic Tac Toe -->
             <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\TicTacToeImage.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/TicTacToeImage.jpg" Width="150" Height="150"/>
                 <Button Content="Tic Tac Toe Game" Width="150" Height="40" Click="TicTacToeGameButton_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- To-Do List -->
             <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\ToDoListImage.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/ToDoListImage.jpg" Width="150" Height="150"/>
                 <Button Content="To-Do List" Width="150" Height="40" Click="ToDoListButton_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
 
             <!-- Countries Project -->
             <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
-                <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\CountriesProjects.jpg" Width="150" Height="150"/>
+                <Image Source="image/LandingPageImage/CountriesProjects.jpg" Width="150" Height="150"/>
                 <Button Content="Countries Project" Width="150" Height="40" Click="CountriesProjectButton_Click" 
                         Background="#99000000" Foreground="White" BorderBrush="White"/>
             </StackPanel>
@@ -93,7 +93,7 @@
                 <Button Width="150" Height="40" Click="BackButton_Click" 
                         Background="#FF007ACC" Foreground="White" BorderBrush="White">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\LandingPageImage\BackButton.png" Width="20" Height="20"/>
+                        <Image Source="image/LandingPageImage/BackButton.png" Width="20" Height="20"/>
                         <TextBlock Text="Back to Main Menu" Margin="10,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button>

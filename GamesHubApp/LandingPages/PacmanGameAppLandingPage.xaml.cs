@@ -12,12 +12,13 @@ namespace GamesHubApp
         private void PlayPacmanGame(object sender, RoutedEventArgs e)
         {
             var pacmanGameWindow = new PacmanGameApp();
-            pacmanGameWindow.ShowDialog();
+            pacmanGameWindow.Show(); 
+            this.Close();
         }
 
         private void BackToGamesPage(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

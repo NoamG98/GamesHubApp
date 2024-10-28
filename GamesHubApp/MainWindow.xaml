@@ -4,12 +4,14 @@
         Title="GameHubApp" Height="450" Width="800" Background="LightBlue">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://application:,,,/image/background.jpg" Stretch="Fill"/>
         </Grid.Background>
 
+   
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <StackPanel x:Name="WelcomePanel" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Welcome to GameHubApp" 
                        FontSize="36" 
                        Foreground="White" 

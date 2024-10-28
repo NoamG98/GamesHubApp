@@ -15,16 +15,15 @@ namespace GamesHubApp
         public GamesPage()
         {
             InitializeComponent();
-            PromptUserDetails(); // Prompt for user details when the page loads
-            LoadUserDetails(); // Load saved user details
-            InitializeTimer(); // Start the timer for updating date and time
+            PromptUserDetails();
+            LoadUserDetails();
+            InitializeTimer();
         }
 
         private void PromptUserDetails()
         {
             if (string.IsNullOrEmpty(Settings.Default.UserName) || string.IsNullOrEmpty(Settings.Default.ProfilePicturePath))
             {
-                // If user details are not saved, prompt for them
                 UserInputWindow userInputWindow = new UserInputWindow();
                 if (userInputWindow.ShowDialog() == true)
                 {
@@ -43,12 +42,11 @@ namespace GamesHubApp
 
         private void UpdateDateTime(object sender, EventArgs e)
         {
-            DateTimeTextBlock.Text = DateTime.Now.ToString("F"); // Full date and time pattern
+            DateTimeTextBlock.Text = DateTime.Now.ToString("F");
         }
 
         private void LoadUserDetails()
         {
-            // Load user name and profile picture from local storage
             if (!string.IsNullOrEmpty(Settings.Default.UserName))
             {
                 UserNameTextBlock.Text = Settings.Default.UserName;
@@ -62,7 +60,6 @@ namespace GamesHubApp
 
         private void SaveUserDetails(string userName, string profilePicturePath)
         {
-            // Save user details to local storage
             Settings.Default.UserName = userName;
             Settings.Default.ProfilePicturePath = profilePicturePath;
             Settings.Default.Save();
@@ -70,20 +67,16 @@ namespace GamesHubApp
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Clear user details from local storage
             Settings.Default.UserName = string.Empty;
             Settings.Default.ProfilePicturePath = string.Empty;
             Settings.Default.Save();
 
-            // Show the login prompt again
             PromptUserDetails();
 
-            // Reset the displayed user info
             UserNameTextBlock.Text = string.Empty;
             UserProfilePicture.Source = null;
         }
 
-        // שאר המתודות עבור המשחקים
         private void SpaceBattleShooterGame_Click(object sender, RoutedEventArgs e)
         {
             var spaceBattleShooterGameLandingPage = new SpaceBattleShooterGameLandingPage();

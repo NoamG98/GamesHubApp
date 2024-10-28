@@ -46,9 +46,10 @@ namespace GamesHubApp
 
             MyCanvas.Focus();
 
+            // הגדרת תמונת הרקע כנתיב יחסי
             ImageBrush bg = new ImageBrush
             {
-                ImageSource = new BitmapImage(new Uri("C:\\Users\\noam1\\OneDrive\\שולחן העבודה\\GamesHubApp\\image\\imageBattleShooter\\wallpaper.png", UriKind.Absolute)),
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/imageBattleShooter/wallpaper.png", UriKind.Absolute)),
                 TileMode = TileMode.Tile,
                 Viewport = new Rect(0, 0, 0.15, 0.15),
                 ViewportUnits = BrushMappingMode.RelativeToBoundingBox
@@ -56,9 +57,10 @@ namespace GamesHubApp
 
             MyCanvas.Background = bg;
 
+            // הגדרת תמונת השחקן כנתיב יחסי
             ImageBrush playerImage = new ImageBrush
             {
-                ImageSource = new BitmapImage(new Uri("C:\\Users\\noam1\\OneDrive\\שולחן העבודה\\GamesHubApp\\image\\imageBattleShooter\\player.png", UriKind.Absolute))
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/imageBattleShooter/player.png", UriKind.Absolute))
             };
 
             player.Fill = playerImage;
@@ -67,16 +69,19 @@ namespace GamesHubApp
             this.Closing += SpaceBattleShooterGame_Closing;
         }
 
-        // Event handler for window closing
         private void SpaceBattleShooterGame_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
-            // Stop the game timer to ensure the game stops running
+            // עוצר את הטיימר ומוודא שהמשחק נסגר כאשר המשתמש בוחר לצאת
             gametime.Stop();
-            // Optionally, if you want to add any confirmation before closing:
             MessageBoxResult result = MessageBox.Show("Are you sure you want to close the game?", "Close Game", MessageBoxButton.YesNo);
+
             if (result == MessageBoxResult.No)
             {
-                e.Cancel = true; // Cancel the closing if the user clicks No
+                e.Cancel = true; // מבטל את הסגירה אם המשתמש בחר "לא"
+            }
+            else
+            {
+                Application.Current.Shutdown(); // סוגר את האפליקציה אם המשתמש בחר "כן"
             }
         }
 
@@ -133,10 +138,8 @@ namespace GamesHubApp
                 ImageBrush enemySprite = new ImageBrush();
                 enemySpriteCounter = rand.Next(1, 5);
 
-                string imagePath = System.IO.Path.Combine(
-                    @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\imageBattleShooter",
-                    $"{enemySpriteCounter}.png");
-
+                // שימוש בנתיב יחסי ליצירת אויבים
+                string imagePath = $"pack://application:,,,/image/imageBattleShooter/{enemySpriteCounter}.png";
                 enemySprite.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
 
                 Rectangle newEnemy = new Rectangle

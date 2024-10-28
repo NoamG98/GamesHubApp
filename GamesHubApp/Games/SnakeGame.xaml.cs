@@ -1,6 +1,7 @@
 ﻿using GamesHubApp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,14 +15,16 @@ namespace SnakeGameApp
         private DispatcherTimer gameTimer = new DispatcherTimer();
         private List<Point> snakeParts = new List<Point>();
         private Point snakeDirection;
-        private Point applePosition;
+        private List<Point> applePositions = new List<Point>();
         private int score;
 
         private const int SnakeSize = 20;
+        private const int MaxApples = 4;
 
         public SnakeGame()
         {
             InitializeComponent();
+            this.Closing += SnakeGame_Closing;
             StartGame();
         }
 
@@ -29,7 +32,7 @@ namespace SnakeGameApp
         {
             snakeParts = new List<Point> { new Point(512, 384) };
             snakeDirection = new Point(SnakeSize, 0);
-            applePosition = GetRandomPosition();
+            applePositions = new List<Point> { GetRandomPosition() };
             score = 0;
 
             gameTimer.Interval = TimeSpan.FromMilliseconds(200);
@@ -58,14 +61,26 @@ namespace SnakeGameApp
             Point newHead = new Point(snakeParts[0].X + snakeDirection.X, snakeParts[0].Y + snakeDirection.Y);
             snakeParts.Insert(0, newHead);
 
-            if (Math.Abs(newHead.X - applePosition.X) < SnakeSize && Math.Abs(newHead.Y - applePosition.Y) < SnakeSize)
+            bool ateApple = false;
+
+            for (int i = 0; i < applePositions.Count; i++)
             {
-                score++;
-                applePosition = GetRandomPosition();
+                if (Math.Abs(newHead.X - applePositions[i].X) < SnakeSize && Math.Abs(newHead.Y - applePositions[i].Y) < SnakeSize)
+                {
+                    score++;
+                    applePositions[i] = GetRandomPosition();
+                    ateApple = true;
+                }
             }
-            else
+
+            if (!ateApple)
             {
                 snakeParts.RemoveAt(snakeParts.Count - 1);
+            }
+
+            if (applePositions.Count < MaxApples)
+            {
+                applePositions.Add(GetRandomPosition());
             }
         }
 
@@ -73,7 +88,7 @@ namespace SnakeGameApp
         {
             Point head = snakeParts[0];
 
-            if (head.X < 0 || head.Y < 0 || head.X >= 1024 || head.Y >= 768)
+            if (head.X < 0 || head.Y < 0 || head.X >= 1024 - SnakeSize || head.Y >= 768 - SnakeSize)
             {
                 return true;
             }
@@ -106,33 +121,36 @@ namespace SnakeGameApp
                 GameCanvas.Children.Add(snakePartImage);
             }
 
-            Image appleImage = new Image
+            foreach (var position in applePositions)
             {
-                Width = SnakeSize,
-                Height = SnakeSize,
-                Source = new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\apple.png", UriKind.Absolute))
-            };
-            Canvas.SetLeft(appleImage, applePosition.X);
-            Canvas.SetTop(appleImage, applePosition.Y);
-            GameCanvas.Children.Add(appleImage);
+                Image appleImage = new Image
+                {
+                    Width = SnakeSize,
+                    Height = SnakeSize,
+                    Source = new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/apple.png", UriKind.Absolute))
+                };
+                Canvas.SetLeft(appleImage, position.X);
+                Canvas.SetTop(appleImage, position.Y);
+                GameCanvas.Children.Add(appleImage);
+            }
         }
 
         private BitmapImage GetSnakeImage(int index)
         {
             if (index == 0)
             {
-                if (snakeDirection.Y == -SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\head_up.png", UriKind.Absolute));
-                if (snakeDirection.Y == SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\head_down.png", UriKind.Absolute));
-                if (snakeDirection.X == -SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\head_left.png", UriKind.Absolute));
-                if (snakeDirection.X == SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\head_right.png", UriKind.Absolute));
+                if (snakeDirection.Y == -SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/head_up.png", UriKind.Absolute));
+                if (snakeDirection.Y == SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/head_down.png", UriKind.Absolute));
+                if (snakeDirection.X == -SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/head_left.png", UriKind.Absolute));
+                if (snakeDirection.X == SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/head_right.png", UriKind.Absolute));
             }
             else if (index == snakeParts.Count - 1)
             {
                 Point tailDirection = new Point(snakeParts[index - 1].X - snakeParts[index].X, snakeParts[index - 1].Y - snakeParts[index].Y);
-                if (tailDirection.Y == -SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\tail_down.png", UriKind.Absolute));
-                if (tailDirection.Y == SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\tail_up.png", UriKind.Absolute));
-                if (tailDirection.X == -SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\tail_right.png", UriKind.Absolute));
-                if (tailDirection.X == SnakeSize) return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\tail_left.png", UriKind.Absolute));
+                if (tailDirection.Y == -SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/tail_down.png", UriKind.Absolute));
+                if (tailDirection.Y == SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/tail_up.png", UriKind.Absolute));
+                if (tailDirection.X == -SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/tail_right.png", UriKind.Absolute));
+                if (tailDirection.X == SnakeSize) return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/tail_left.png", UriKind.Absolute));
             }
             else
             {
@@ -143,38 +161,39 @@ namespace SnakeGameApp
 
                 if ((differencePrev.X == SnakeSize && differenceNext.X == -SnakeSize) || (differencePrev.X == -SnakeSize && differenceNext.X == SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_horizontal.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_horizontal.png", UriKind.Absolute));
                 }
                 if ((differencePrev.Y == SnakeSize && differenceNext.Y == -SnakeSize) || (differencePrev.Y == -SnakeSize && differenceNext.Y == SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_vertical.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_vertical.png", UriKind.Absolute));
                 }
                 if ((differencePrev.X == SnakeSize && differenceNext.Y == SnakeSize) || (differencePrev.Y == SnakeSize && differenceNext.X == SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_bottomright.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_bottomright.png", UriKind.Absolute));
                 }
                 if ((differencePrev.X == -SnakeSize && differenceNext.Y == SnakeSize) || (differencePrev.Y == SnakeSize && differenceNext.X == -SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_bottomleft.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_bottomleft.png", UriKind.Absolute));
                 }
                 if ((differencePrev.X == SnakeSize && differenceNext.Y == -SnakeSize) || (differencePrev.Y == -SnakeSize && differenceNext.X == SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_topright.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_topright.png", UriKind.Absolute));
                 }
                 if ((differencePrev.X == -SnakeSize && differenceNext.Y == -SnakeSize) || (differencePrev.Y == -SnakeSize && differenceNext.X == -SnakeSize))
                 {
-                    return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_topleft.png", UriKind.Absolute));
+                    return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_topleft.png", UriKind.Absolute));
                 }
             }
 
-            return new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\SnakeImage\body_vertical.png", UriKind.Absolute));
+            return new BitmapImage(new Uri("pack://application:,,,/Image/SnakeImage/body_vertical.png", UriKind.Absolute));
         }
+
 
         private Point GetRandomPosition()
         {
             Random rand = new Random();
-            int x = rand.Next(0, 1024 / SnakeSize) * SnakeSize;
-            int y = rand.Next(0, 768 / SnakeSize) * SnakeSize;
+            int x = rand.Next(0, (1024 - SnakeSize) / SnakeSize) * SnakeSize;
+            int y = rand.Next(0, (768 - SnakeSize) / SnakeSize) * SnakeSize;
             return new Point(x, y);
         }
 
@@ -212,6 +231,12 @@ namespace SnakeGameApp
                 mainWindow.Show();
                 this.Close();
             }
+        }
+
+        private void SnakeGame_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            gameTimer.Stop();
+            Application.Current.Shutdown();
         }
     }
 }

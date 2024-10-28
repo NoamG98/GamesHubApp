@@ -11,8 +11,7 @@ namespace GamesHubApp
 
         private void PlaySpaceBattleShooterGame(object sender, RoutedEventArgs e)
         {
-   
-            SpaceBattleShooterGame gameWindow = new SpaceBattleShooterGame();
+            var gameWindow = new SpaceBattleShooterGame();
             gameWindow.Show();
             this.Close();
         }

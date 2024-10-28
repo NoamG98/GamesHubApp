@@ -12,9 +12,9 @@ namespace GamesHubApp
         private void OpenCountriesProject(object sender, RoutedEventArgs e)
         {
             var countriesProjectWindow = new CountriesProject();
-            countriesProjectWindow.ShowDialog();
+            countriesProjectWindow.Show(); 
+            this.Close();
         }
-
 
         private void BackToGamesPage(object sender, RoutedEventArgs e)
         {

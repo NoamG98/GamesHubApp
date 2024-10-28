@@ -57,7 +57,7 @@ namespace TodoListProj
             {
                 if (selectedItem.Content is StackPanel taskPanel)
                 {
-                    TextBlock taskText = taskPanel.Children.OfType<TextBlock>().FirstOrDefault();
+                    TextBlock? taskText = taskPanel.Children.OfType<TextBlock>().FirstOrDefault();
                     if (taskText != null)
                     {
                         string newTask = TaskInput.Text;
@@ -86,7 +86,7 @@ namespace TodoListProj
         {
             if (sender is CheckBox checkBox && checkBox.Parent is StackPanel taskPanel)
             {
-                TextBlock taskText = taskPanel.Children.OfType<TextBlock>().FirstOrDefault();
+                TextBlock? taskText = taskPanel.Children.OfType<TextBlock>().FirstOrDefault();
                 if (taskText != null)
                 {
                     if (!taskText.Text.EndsWith(" ✔"))
@@ -122,7 +122,7 @@ namespace TodoListProj
                 if (TaskList.SelectedItem is ListBoxItem selectedItem)
                 {
                     // Display the task in the input box for editing
-                    TaskInput.Text = selectedItem.Tag.ToString();
+                    TaskInput.Text = selectedItem.Tag?.ToString() ?? string.Empty; // Check for null here
                 }
             }
             else

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,7 @@ namespace GamesHubApp
         private List<Rectangle> coins = new List<Rectangle>();
         private List<Rectangle> enemies = new List<Rectangle>();
         private List<Rectangle> walls = new List<Rectangle>();
+        private Dictionary<Rectangle, Point> enemyDirections = new Dictionary<Rectangle, Point>(); // כיווני תנועה לאויבים
         private int score;
         private bool gameOver;
 
@@ -46,7 +48,14 @@ namespace GamesHubApp
         public PacmanGameApp()
         {
             InitializeComponent();
+            this.Closing += PacmanGameApp_Closing;
             SetupGame();
+        }
+
+        private void PacmanGameApp_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            gameTimer.Stop();
+            Application.Current.Shutdown();
         }
 
         private void SetupGame()
@@ -59,6 +68,7 @@ namespace GamesHubApp
 
             gameOver = false;
             score = 0;
+            enemyDirections.Clear(); // איפוס כיווני האויבים
 
             InitializeGameArea();
             InitializeMap();
@@ -107,15 +117,15 @@ namespace GamesHubApp
                     {
                         Rectangle coin = new Rectangle
                         {
-                            Width = EntitySize,
-                            Height = EntitySize,
+                            Width = EntitySize / 2,
+                            Height = EntitySize / 2,
                             Fill = new ImageBrush
                             {
-                                ImageSource = new BitmapImage(new Uri(@"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\coin.gif", UriKind.Absolute))
+                                ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/Pacmanimages/coin.gif", UriKind.Absolute))
                             }
                         };
-                        Canvas.SetLeft(coin, x);
-                        Canvas.SetTop(coin, y);
+                        Canvas.SetLeft(coin, x + EntitySize / 4);
+                        Canvas.SetTop(coin, y + EntitySize / 4);
                         coins.Add(coin);
                         GameCanvas.Children.Add(coin);
                     }
@@ -128,7 +138,6 @@ namespace GamesHubApp
             player.Width = EntitySize;
             player.Height = EntitySize;
             player.Fill = GetPacmanImage("RIGHT");
-
 
             for (int row = 0; row < map.GetLength(0); row++)
             {
@@ -147,13 +156,13 @@ namespace GamesHubApp
         private void InitializeEnemies()
         {
             string[] enemyImages = {
-                @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\pink_guy.gif",
-                @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\red_guy.gif",
-                @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\yellow_guy.gif"
-            };
+                 "pack://application:,,,/image/Pacmanimages/pink_guy.gif",
+                 "pack://application:,,,/image/Pacmanimages/red_guy.gif",
+                 "pack://application:,,,/image/Pacmanimages/yellow_guy.gif"
+                };
+
             Random rand = new Random();
 
-            // Place enemies at positions marked by '@' in the map
             int enemyIndex = 0;
             for (int row = 0; row < map.GetLength(0); row++)
             {
@@ -175,13 +184,18 @@ namespace GamesHubApp
                         Canvas.SetTop(enemy, row * EntitySize);
                         enemies.Add(enemy);
                         GameCanvas.Children.Add(enemy);
+
+                        // הגדרת כיוון התחלתי אקראי לכל אויב
+                        Point direction = new Point(rand.Next(-1, 2), rand.Next(-1, 2));
+                        enemyDirections[enemy] = direction;
+
                         enemyIndex++;
                     }
                 }
             }
         }
 
-        private void GameTick(object? sender, EventArgs e)
+        private void GameTick(object sender, EventArgs e)
         {
             if (gameOver)
             {
@@ -192,112 +206,6 @@ namespace GamesHubApp
 
             MoveEnemies();
             CheckCollisions();
-        }
-
-        private void MoveEnemies()
-        {
-            Random rand = new Random();
-
-            foreach (var enemy in enemies)
-            {
-                double left = Canvas.GetLeft(enemy);
-                double top = Canvas.GetTop(enemy);
-
-                int direction = rand.Next(1, 5);
-                double newLeft = left, newTop = top;
-
-                switch (direction)
-                {
-                    case 1:
-                        newTop = top - EntitySize;
-                        break;
-                    case 2:
-                        newTop = top + EntitySize;
-                        break;
-                    case 3:
-                        newLeft = left - EntitySize;
-                        break;
-                    case 4:
-                        newLeft = left + EntitySize; 
-                        break;
-                }
-
-
-                if (IsWalkable(newLeft, newTop) && IsOnPath(newLeft, newTop))
-                {
-                    Canvas.SetLeft(enemy, newLeft);
-                    Canvas.SetTop(enemy, newTop);
-                }
-            }
-        }
-
-        private bool IsWalkable(double x, double y)
-        {
-            if (x < 0 || y < 0 || x >= GameAreaWidth || y >= GameAreaHeight)
-            {
-                return false;
-            }
-
-            foreach (var wall in walls)
-            {
-                double wallLeft = Canvas.GetLeft(wall);
-                double wallTop = Canvas.GetTop(wall);
-
-                if (x == wallLeft && y == wallTop)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool IsOnPath(double x, double y)
-        {
-
-            int col = (int)(x / EntitySize);
-            int row = (int)(y / EntitySize);
-
-            return map[row, col] == '.' || map[row, col] == '$' || map[row, col] == 'C';
-        }
-
-        private void CheckCollisions()
-        {
-            Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
-
-            foreach (var coin in coins.ToArray())
-            {
-                Rect coinHitBox = new Rect(Canvas.GetLeft(coin), Canvas.GetTop(coin), coin.Width, coin.Height);
-
-                if (playerHitBox.IntersectsWith(coinHitBox) || playerHitBox.Contains(Canvas.GetLeft(coin), Canvas.GetTop(coin)))
-                {
-                    score++;
-                    GameCanvas.Children.Remove(coin);
-                    coins.Remove(coin);
-                    break;
-                }
-            }
-
-            foreach (var enemy in enemies)
-            {
-                Rect enemyHitBox = new Rect(Canvas.GetLeft(enemy), Canvas.GetTop(enemy), enemy.Width, enemy.Height);
-
-                if (playerHitBox.IntersectsWith(enemyHitBox))
-                {
-                    gameOver = true;
-                }
-            }
-
-
-            if (coins.Count == 0)
-            {
-                int col = (int)(Canvas.GetLeft(player) / EntitySize);
-                int row = (int)(Canvas.GetTop(player) / EntitySize);
-                if (map[row, col] == '$')
-                {
-                    gameOver = true;
-                    ShowVictoryMessage();
-                }
-            }
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -327,29 +235,74 @@ namespace GamesHubApp
                     break;
             }
 
-  
-            if (IsWalkable(newLeft, newTop) && IsOnPath(newLeft, newTop))
+            if (IsWalkable(newLeft, newTop))
             {
                 Canvas.SetLeft(player, newLeft);
                 Canvas.SetTop(player, newTop);
             }
         }
 
-        private ImageBrush GetPacmanImage(string direction)
+        private void MoveEnemies()
         {
-            string imagePath = direction switch
-            {
-                "UP" => @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\Up.gif",
-                "DOWN" => @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\down.gif",
-                "LEFT" => @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\left.gif",
-                "RIGHT" => @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\right.gif",
-                _ => @"C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\Pacmanimages\right.gif",
-            };
+            Random rand = new Random();
 
-            return new ImageBrush
+            foreach (var enemy in enemies)
             {
-                ImageSource = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
-            };
+                Point direction = enemyDirections[enemy];
+
+                double newLeft = Canvas.GetLeft(enemy) + direction.X * EntitySize;
+                double newTop = Canvas.GetTop(enemy) + direction.Y * EntitySize;
+
+                // אם האויב פוגע בקיר, שינוי כיוון
+                if (!IsWalkable(newLeft, newTop))
+                {
+                    direction = new Point(rand.Next(-1, 2), rand.Next(-1, 2));
+                    enemyDirections[enemy] = direction;
+                }
+                else
+                {
+                    Canvas.SetLeft(enemy, newLeft);
+                    Canvas.SetTop(enemy, newTop);
+                }
+            }
+        }
+
+        private void CheckCollisions()
+        {
+            Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
+
+            foreach (var coin in coins.ToArray())
+            {
+                Rect coinHitBox = new Rect(Canvas.GetLeft(coin), Canvas.GetTop(coin), coin.Width, coin.Height);
+
+                if (playerHitBox.IntersectsWith(coinHitBox))
+                {
+                    score++;
+                    GameCanvas.Children.Remove(coin);
+                    coins.Remove(coin);
+                }
+            }
+
+            foreach (var enemy in enemies)
+            {
+                Rect enemyHitBox = new Rect(Canvas.GetLeft(enemy), Canvas.GetTop(enemy), enemy.Width, enemy.Height);
+
+                if (playerHitBox.IntersectsWith(enemyHitBox))
+                {
+                    gameOver = true;
+                }
+            }
+
+            if (coins.Count == 0)
+            {
+                int col = (int)(Canvas.GetLeft(player) / EntitySize);
+                int row = (int)(Canvas.GetTop(player) / EntitySize);
+                if (map[row, col] == '$')
+                {
+                    gameOver = true;
+                    ShowVictoryMessage();
+                }
+            }
         }
 
         private void ShowGameOver()
@@ -391,6 +344,40 @@ namespace GamesHubApp
             enemies.Clear();
             walls.Clear();
             SetupGame();
+        }
+
+        private ImageBrush GetPacmanImage(string direction)
+        {
+            string imagePath = direction switch
+            {
+                "UP" => "pack://application:,,,/image/Pacmanimages/Up.gif",
+                "DOWN" => "pack://application:,,,/image/Pacmanimages/down.gif",
+                "LEFT" => "pack://application:,,,/image/Pacmanimages/left.gif",
+                "RIGHT" => "pack://application:,,,/image/Pacmanimages/right.gif",
+                _ => "pack://application:,,,/image/Pacmanimages/right.gif",
+            };
+
+            return new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
+            };
+        }
+
+        private bool IsWalkable(double x, double y)
+        {
+            if (x < 0 || y < 0 || x >= GameAreaWidth || y >= GameAreaHeight)
+            {
+                return false;
+            }
+
+            foreach (var wall in walls)
+            {
+                if (x == Canvas.GetLeft(wall) && y == Canvas.GetTop(wall))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

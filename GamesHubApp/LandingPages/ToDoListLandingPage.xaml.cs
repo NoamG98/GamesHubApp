@@ -9,11 +9,11 @@ namespace GamesHubApp
             InitializeComponent();
         }
 
-
         private void OpenToDoList(object sender, RoutedEventArgs e)
         {
             var todoListWindow = new TodoListProj.ToDoList();
-            todoListWindow.ShowDialog();
+            todoListWindow.Show();
+            this.Close();
         }
 
         private void BackToGamesPage(object sender, RoutedEventArgs e)

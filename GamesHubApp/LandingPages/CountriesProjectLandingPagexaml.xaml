@@ -5,7 +5,7 @@
     <Grid Margin="10">
         <!-- Background Image -->
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\noam1\OneDrive\שולחן העבודה\GamesHubApp\image\background.jpg" Stretch="Fill"/>
+            <ImageBrush ImageSource="pack://application:,,,/image/background.jpg" Stretch="Fill"/>
         </Grid.Background>
 
         <!-- Title -->
@@ -13,11 +13,11 @@
                    HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0" Foreground="White"/>
 
         <!-- Description -->
-        <TextBlock Text="Explore the World! Programming Language: C# and WFP" FontSize="20" 
+        <TextBlock Text="Explore the World! Programming Language: C# and WPF" FontSize="20" 
                    HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0" Foreground="White"/>
 
         <!-- Image for Countries Explorer -->
-        <Image Source="C:\Users\noam1\Source\Repos\NewRepo\GamesHubApp\image\Countries\CountriesProjects.jpg" 
+        <Image Source="pack://application:,,,/image/Countries/CountriesProjects.jpg" 
                Width="213" Height="135" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="62,136,0,0"/>
 
         <!-- Play Button -->
