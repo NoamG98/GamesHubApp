@@ -58,7 +58,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="image\SnakeImage\head_up.png" />
+    <Resource Include="image\SnakeImage\head_up.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -100,20 +102,48 @@
     <Resource Include="image\Pacmanimages\right.gif" />
     <Resource Include="image\Pacmanimages\Up.gif" />
     <Resource Include="image\Pacmanimages\yellow_guy.gif" />
-    <Resource Include="image\SnakeImage\apple.png" />
-    <Resource Include="image\SnakeImage\body_bottomleft.png" />
-    <Resource Include="image\SnakeImage\body_bottomright.png" />
-    <Resource Include="image\SnakeImage\body_topleft.png" />
-    <Resource Include="image\SnakeImage\body_topright.png" />
-    <Resource Include="image\SnakeImage\body_vertical.png" />
-    <Resource Include="image\SnakeImage\head_down.png" />
-    <Resource Include="image\SnakeImage\head_left.png" />
-    <Resource Include="image\SnakeImage\head_right.png" />
-    <Resource Include="image\SnakeImage\Snakebackground.jpg" />
-    <Resource Include="image\SnakeImage\tail_down.png" />
-    <Resource Include="image\SnakeImage\tail_left.png" />
-    <Resource Include="image\SnakeImage\tail_right.png" />
-    <Resource Include="image\SnakeImage\tail_up.png" />
+    <Resource Include="image\SnakeImage\apple.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\body_bottomleft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\body_bottomright.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\body_topleft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\body_topright.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\body_vertical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\head_down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\head_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\head_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\Snakebackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\tail_down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\tail_left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\tail_right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="image\SnakeImage\tail_up.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
