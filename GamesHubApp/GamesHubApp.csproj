@@ -58,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="image\SnakeImage\body_horizontal.png" />
     <Resource Include="image\SnakeImage\head_up.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
